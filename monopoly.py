@@ -1,8 +1,9 @@
 import random
+import sys
 
 # Players stats
 class Player:
-    def participant(my, name):
+    def __init__(my, name): # previous "participant" switch to init
         my.money = 1500
         my.name = name
         my.position = 0
@@ -112,7 +113,7 @@ class Jail_Slot(Slot):
                     player.outjail()
                     rolldice = my.throwdice
                     player.move(rolldice)
-            if player.jailturns is 3:
+            if player.jailturns == 3:
                 player.money -= 150
                 player.outjail()
                 rolldice = my.throwdice
@@ -157,6 +158,7 @@ class Monopoly:
         my.board = board()
         my.players = []
         my.current_position = 0
+        my.round_count = 0  # count round
 
     # Add players
     def add_player(my, name):
@@ -170,29 +172,42 @@ class Monopoly:
 
     # player roll 2 dices and move accordin to the sum of both dices    
     def turns(my):
-        player = my.players[my.current_position]
-        print(player.name + "'s turn")
+        if len(my.players)>1 and my.round_count <100:
+            player = my.players[my.current_position]
+            print(player.name + "'s turn")
         
-        dice1, dice2 = my.roll_dice()
-        print("First dice is " + dice1)
-        print("First dice is " + dice2)
+            dice1, dice2 = my.roll_dice()
+            print("First dice is " + dice1)
+            print("First dice is " + dice2)
 
-        sum = dice1 + dice2
-        print("Sum is " + sum)
-        player.move(sum)
+            sum = dice1 + dice2
+            print("Sum is " + sum)
+            player.move(sum)  # player moves sum block
 
-        #if players money is less than 0, gets eliminated
-        if player.money < 0:
-            my.players.remove(player)
-            print("Player Eliminated")
+            #if players money is less than 0, gets eliminated
+            if player.money < 0:
+                my.players.remove(player)
+                print("Player Eliminated")
         
-        my.current_position = (my.current_position + 1) % len(my.players)
+            my.current_position = (my.current_position + 1) % len(my.players)
+            my.round_count +=1 # not sure if it is right to add riaht here, check again first
+        else:
+            my.end_game
+    
+    def end_game(my):
+        if len(my.players) == 1:
+            print(f"The game ended! {my.players[0].name} wins!")
+        else:
+            print("Game ended after 100 rounds.")
+        sys.exit()
+        
+
 
 #Player management
-def Start_game():
-    global board_instance 
-    board_instance = board()
-    monopoly_game = Monopoly()
+def Start_game(board_instance: board, monopoly_game: Monopoly):
+    # global board_instance 
+    # board_instance = board()
+    # monopoly_game = Monopoly()
 
     # adds player up to 8, type 'done' to finish adding more players
     print("Enter player names (max 8 players). Type 'done' when finished:")
@@ -204,7 +219,7 @@ def Start_game():
             break
         
         # loop until only 1 player is left
-        while len(monopoly_game.players) > 1: 
+        while len(monopoly_game.players) > 1 and monopoly_game.round_count < 100: 
             monopoly_game.play_turn()
 
         if len(monopoly_game.players) == 1:
