@@ -1,5 +1,5 @@
-import monopoly
-from monopoly import Monopoly, board, Start_game
+import Monopoly
+from Monopoly import Monopoly, board, Start_game
 
 
 if __name__ == "__main__":
