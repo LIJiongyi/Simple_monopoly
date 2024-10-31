@@ -7,13 +7,14 @@ import sys
 class Monopolyclass:
     def __init__(self):
         self.players = []
-
-    def start(self):
-        self.board = Boardclass()
-        self.current_position = 0
         self.round_count = 0  # count round
         self.turn_count = 0
+        self.current_position = 0
+        self.board = Boardclass()
 
+    # def start(self):
+        
+        
     # Add players
     def add_player(self, name):
         self.players.append(Playerclass(name))
