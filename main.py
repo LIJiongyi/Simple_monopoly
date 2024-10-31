@@ -1,9 +1,10 @@
-import Monopoly
-from Monopoly import Monopoly, board, Start_game
-
+import monopoly
+from monopoly import Monopolyclass
+from start_game import Start_gameclass
+from board import Boardclass
 
 if __name__ == "__main__":
     global board_instance 
-    board_instance = board()
-    monopoly_game = Monopoly()
-    Start_game(board_instance, monopoly_game)
+    board_instance = Boardclass()
+    monopoly_game = Monopolyclass()
+    Start_gameclass(board_instance, monopoly_game)

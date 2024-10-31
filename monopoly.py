@@ -1,20 +1,22 @@
 import random
-from Player import player
-from Board import board
+from player import Playerclass
+from board import Boardclass
 import sys
 
 # Game Logic
-class Monopoly:
-    def start(self):
-        self.board = board()
+class Monopolyclass:
+    def __init__(self):
         self.players = []
+
+    def start(self):
+        self.board = Boardclass()
         self.current_position = 0
         self.round_count = 0  # count round
         self.turn_count = 0
 
     # Add players
     def add_player(self, name):
-        self. players.append(player(name))
+        self.players.append(Playerclass(name))
 
     # Roll dices
     def roll_dice(self):

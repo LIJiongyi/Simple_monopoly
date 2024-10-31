@@ -1,8 +1,8 @@
 import random
 import sys
-from Monopoly import Monopoly
-from Player import Player
-from Board import board
+# from monopoly import Monopolyclass
+#from player import Playerclass
+#from board import Boardclass
 
 class Property:
     def propinfo(self, name, rent, price):
@@ -95,24 +95,4 @@ class Jail_Slot(Slot):
         
 
 
-#Player management
-def Start_game(board_instance: board, monopoly_game: Monopoly):
-    # global board_instance 
-    # board_instance = board()
-    # monopoly_game = Monopoly()
 
-    # adds player up to 8, type 'done' to finish adding more players
-    print("Enter player names (max 8 players). Type 'done' when finished:")
-    while len(monopoly_game.players) < 8:
-        name = input(f"Player {len(monopoly_game.players) + 1}: ")
-        if name:  # Ensure the name is not empty
-            monopoly_game.add_player(name)
-        if name.lower() == 'done':
-            break
-        
-        # loop until only 1 player is left
-        while True: 
-            monopoly_game.turns()
-
-        # if len(monopoly_game.players) == 1:
-        #     print(f"The game ended! {monopoly_game.players[0].name} wins!")

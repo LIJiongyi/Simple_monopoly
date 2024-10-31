@@ -1,8 +1,8 @@
-from Player import Player
-from Monopoly import Monopoly
-from All_slot import Goslot, Property_Slot, Chance_Slot, Tax_Slot, Visiting_Slot, Free_Parking_Slot, Gotojail_Slot
+# from player import Playerclass
+ #from monopoly import Monopolyclass
+from all_slot import Goslot, Property_Slot, Chance_Slot, Tax_Slot, Visiting_Slot, Free_Parking_Slot, Gotojail_Slot
 #Board 
-class board:
+class Boardclass:
     def slots(self):
         self.locations = [
             Goslot(1,"Go"),
