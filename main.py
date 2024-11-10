@@ -1,7 +1,7 @@
-import monopoly
-from monopoly import Monopolyclass
+import monopoly_game_logic
+from monopoly_game_logic import Monopolyclass
 from start_game import Start_gameclass
-from board import Boardclass
+from Board_back import Boardclass
 
 if __name__ == "__main__":
     global board_instance 

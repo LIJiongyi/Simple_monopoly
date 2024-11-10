@@ -1,5 +1,5 @@
-from board import Boardclass
-from monopoly import Monopolyclass
+from Board_back import Boardclass
+from monopoly_game_logic import Monopolyclass
 
 #Player management
 def Start_gameclass(board_instance: Boardclass, monopoly_game: Monopolyclass):

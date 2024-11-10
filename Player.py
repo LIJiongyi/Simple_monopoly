@@ -1,19 +1,21 @@
 # Player class, Players stats
-from board import Boardclass
+from Board import Boardclass
 
 
 class Playerclass:
-    def __init__(self, name): # previous "participant" switch to init
+    def __init__(self, name, board): # previous "participant" switch to init
         self.money = 1500
         self.name = name
         self.position = 0
         self.properties = []
         self.jail = False
         self.jailturns = 0
+        self.board = board
 
     def move(self, step):
         self.position = (self.position + step) % 20
-        current_slot = Boardclass.selfposition(self.position) 
+        # current_slot = Boardclass.selfposition(self.position) 
+        current_slot = self.board.selfposition(self.position)
         current_slot.effect(self)
 
     def purchase(self, property):

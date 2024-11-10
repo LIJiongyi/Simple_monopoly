@@ -1,6 +1,6 @@
 import random
-from player import Playerclass
-from board import Boardclass
+from Player import Playerclass
+from Board_back import Boardclass  # note that the first word can also be uppercase, it is a OS system(Windows,Unix)
 import sys
 
 # Game Logic
@@ -17,7 +17,7 @@ class Monopolyclass:
         
     # Add players
     def add_player(self, name):
-        self.players.append(Playerclass(name))
+        self.players.append(Playerclass(name, self.board))
 
     # Roll dices
     def roll_dice(self):
@@ -32,11 +32,11 @@ class Monopolyclass:
             print(player.name + "'s turn")
         
             dice1, dice2 = self.roll_dice()
-            print("First dice is " + dice1)
-            print("First dice is " + dice2)
+            print("First dice is " + str(dice1)) 
+            print("First dice is " + str(dice2))
 
             sum = dice1 + dice2
-            print("Sum is " + sum)
+            print("Sum is " + str(sum))
             player.move(sum)  # player moves sum block
 
             #if players money is less than 0, gets eliminated
