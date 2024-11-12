@@ -27,17 +27,22 @@ class Monopolyclass:
 
     # player roll 2 dices and move accordin to the sum of both dices    
     def turns(self):  # main game playing logic/
-        if len(self.players)>1 and self.round_count <100:
+        if len(self.players) > 1 and self.round_count < 100:
             player = self.players[self.current_position]
             print(player.name + "'s turn")
-        
+
+            input("Press Enter to roll the dice: ")
+
             dice1, dice2 = self.roll_dice()
             print("First dice is " + str(dice1)) 
-            print("First dice is " + str(dice2))
+            print("Second dice is " + str(dice2))
 
             sum = dice1 + dice2
             print("Sum is " + str(sum))
             player.move(sum)  # player moves sum block
+            
+            print("Player's money: " + str(player.money)) # testing, print player's money
+
 
             #if players money is less than 0, gets eliminated
             if player.money < 0:

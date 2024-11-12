@@ -21,11 +21,29 @@ class Slot:
 
 #add 1500 to player toyal money
 class Goslot(Slot):
-    def effect(player, self):
+    def __init__(self, position, name):
+        self.position = position
+        self.name = name
+
+    def effect(self, player):
         player.money += 1500
+
+class Property:
+    def __init__(self, name, price, rent):
+        self.name = name
+        self.price = price
+        self.rent = rent
+        self.owner = None
 
 #
 class Property_Slot(Slot):
+    def __init__(self, position, name, price, rent):
+        self.position = position
+        self.name = name
+        self.price = price
+        self.rent = rent
+        self.property = Property(name, price, rent)
+
     def propertyactivity(self, rent, name, price):
         super().slotinfo(name, "property")
         self.property = self.property(name, price, rent)
@@ -35,30 +53,49 @@ class Property_Slot(Slot):
             player.purchase(self.property)
         elif self.property.owner != None:
             player.payrent(self.property)
-
 #Randomly add or sub from the players money (either gain up to 200hkd or lose up to 300hkd)
 class Chance_Slot(Slot):
+    def __init__(self, position, name):
+        self.position = position
+        self.name = name
+
     def effect(self, player):
         addsub = random.choice(range(-300, 210, 10))
         player.money += addsub
 
-#Pay 10% of player total money
+# Pay 10% of player total money
 class Tax_Slot(Slot):
+    def __init__(self, position, name):
+        self.position = position
+        self.name = name
+
     def effect(self, player):
         tax = (player.money // 10) * 10
         player.money -= tax
 
 class Free_Parking_Slot(Slot):
+    def __init__(self, position, name):
+        self.position = position
+        self.name = name
+
     def effect(self, player):
         pass
 
-class Visiting_Slot:
+class Visiting_Slot(Slot):
+    def __init__(self, position, name):
+        self.position = position
+        self.name = name
+
     def effect(self, player):
         pass
 
 class Gotojail_Slot(Slot):
+    def __init__(self, position, name):
+        self.position = position
+        self.name = name
+
     def effect(self, player):
-        player.gojail()
+        player.injail()
 
 class Jail_Slot(Slot):
     def double(self):

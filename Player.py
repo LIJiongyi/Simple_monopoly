@@ -1,5 +1,5 @@
 # Player class, Players stats
-from Board import Boardclass
+from Board_back import Boardclass
 
 
 class Playerclass:
