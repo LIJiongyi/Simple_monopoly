@@ -7,4 +7,5 @@ if __name__ == "__main__":
     global board_instance 
     board_instance = Boardclass()
     monopoly_game = Monopolyclass()
+    print("Welcome to Monopoly!")
     Start_gameclass(board_instance, monopoly_game)

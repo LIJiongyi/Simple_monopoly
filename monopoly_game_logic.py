@@ -1,6 +1,6 @@
 import random
 from Player import Playerclass
-from Board_back import Boardclass  # note that the first word can also be uppercase, it is a OS system(Windows,Unix)
+from Board_back import Boardclass, Property_Slot  # note that the first word can also be uppercase, it is a OS system(Windows,Unix)
 import sys
 
 # Game Logic
@@ -41,8 +41,23 @@ class Monopolyclass:
             print("Sum is " + str(sum))
             player.move(sum)  # player moves sum block
             
-            print("Player's money: " + str(player.money)) # testing, print player's money
+            # print(f"{player.name}'s money: {player.money}")  # testing, print player's money  (we can remove this now)
+            # print(f"{player.name}'s position: {player.position + 1}")  # testing, print player's position
 
+            # Display all players' money and position
+            for p in self.players:
+                print(f"{p.name}'s money: {p.money}")  # print each player's money
+                print(f"{p.name}'s position: {p.position + 1}")  # print each player's position
+
+            # Check if the player landed on a property slot
+            current_slot = player.board.selfposition(player.position)
+            if isinstance(current_slot, Property_Slot) and current_slot.property.owner is None:
+                decision = input(f"Do you want to purchase {current_slot.property.name} for {current_slot.property.price}? (yes/no): ").strip().lower()
+                if decision == 'yes':
+                    player.purchase(current_slot.property)
+                    print(f"{player.name}'s money now is: {player.money}")
+                else:
+                    print(f"{player.name} chose not to purchase {current_slot.property.name}")
 
             #if players money is less than 0, gets eliminated
             if player.money < 0:
