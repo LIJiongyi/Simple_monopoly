@@ -5,7 +5,7 @@ import sys
 #from board import Boardclass
 
 class Property:
-    def propinfo(self, name, rent, price):
+    def __init__(self, name, rent, price):
         self.name = name
         self.rent = rent
         self.price = price
@@ -27,13 +27,6 @@ class Goslot(Slot):
 
     def effect(self, player):
         player.money += 1500
-
-class Property:
-    def __init__(self, name, price, rent):
-        self.name = name
-        self.price = price
-        self.rent = rent
-        self.owner = None
 
 #
 class Property_Slot(Slot):

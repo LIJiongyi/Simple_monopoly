@@ -1,6 +1,6 @@
 import random
 from Player import Playerclass
-from Board_back import Boardclass, Property_Slot  # note that the first word can also be uppercase, it is a OS system(Windows,Unix)
+from Board_back import Boardclass, Property_Slot, Chance_Slot, Gotojail_Slot,Goslot,Tax_Slot,Free_Parking_Slot  # note that the first word can also be uppercase, it is a OS system(Windows,Unix)
 import sys
 
 # Game Logic
@@ -11,9 +11,6 @@ class Monopolyclass:
         self.turn_count = 0
         self.current_position = 0
         self.board = Boardclass()
-
-    # def start(self):
-        
         
     # Add players
     def add_player(self, name):
@@ -41,14 +38,12 @@ class Monopolyclass:
             print("Sum is " + str(sum))
             player.move(sum)  # player moves sum block
             
-            # print(f"{player.name}'s money: {player.money}")  # testing, print player's money  (we can remove this now)
-            # print(f"{player.name}'s position: {player.position + 1}")  # testing, print player's position
-
             # Display all players' money and position
             for p in self.players:
                 print(f"{p.name}'s money: {p.money}")  # print each player's money
                 print(f"{p.name}'s position: {p.position + 1}")  # print each player's position
 
+            print("\n")
             # Check if the player landed on a property slot
             current_slot = player.board.selfposition(player.position)
             if isinstance(current_slot, Property_Slot) and current_slot.property.owner is None:
@@ -59,6 +54,24 @@ class Monopolyclass:
                 else:
                     print(f"{player.name} chose not to purchase {current_slot.property.name}")
 
+            if isinstance(current_slot, Property_Slot) and current_slot.property.owner is not None: # if player lands on a owner's property
+                player.payrent(current_slot.property)
+                print(f"{player.name} paid rent to {current_slot.property.owner.name}. {player.name}'s money now is: {player.money}")
+            elif isinstance(current_slot, Chance_Slot): # if player lands on a chance slot
+                current_slot.effect(player)
+                print(f"{player.name} landed on a Chance slot and now has {player.money} money.")
+            elif isinstance(current_slot, Gotojail_Slot): # if player lands on a go to jail slot
+                current_slot.effect(player)
+                print(f"{player.name} is sent to jail.")
+            elif isinstance(current_slot, Goslot):
+                current_slot.effect(player)
+                print(f"{player.name} stopped on Go. {player.name}'s money now is: {player.money}")
+            elif isinstance(current_slot, Tax_Slot):
+                current_slot.effect(player)
+                print(f"{player.name} paid tax. {player.name}'s money now is: {player.money}")
+            elif isinstance(current_slot, Free_Parking_Slot):
+                current_slot.effect(player)
+                print(f"{player.name} landed on Free Parking.")
             #if players money is less than 0, gets eliminated
             if player.money < 0:
                 self.players.remove(player)
