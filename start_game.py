@@ -37,7 +37,8 @@ def Start_gameclass(board_instance: Boardclass, monopoly_game: Monopolyclass):
                 continue
 
         if len(monopoly_game.players) >= 2:
-            mainscreen()
+            player_positions = [player.position for player in monopoly_game.players]
+            mainscreen(player_positions)
             break  # 玩家数量足够，退出外层循环开始游戏
 
     while True: 

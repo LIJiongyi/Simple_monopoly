@@ -10,5 +10,4 @@ if __name__ == "__main__":
     monopoly_game = Monopolyclass()
     print("Welcome to Monopoly!")
     Start_gameclass(board_instance, monopoly_game)
-    mainscreen()
     
