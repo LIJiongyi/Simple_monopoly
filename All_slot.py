@@ -43,9 +43,15 @@ class Property_Slot(Slot):
 
     def effect(self, player):
         if self.property.owner is None:
-            player.purchase(self.property)
-        elif self.property.owner != None:
+            decision = input(f"Do you want to purchase {self.property.name} for {self.property.price}? (yes/no): ").strip().lower()
+            if decision == 'yes':
+                player.purchase(self.property)
+                print(f"{player.name} purchased {self.property.name}. {player.name}'s money now is: {player.money}")
+            else:
+                print(f"{player.name} chose not to purchase {self.property.name}")
+        elif self.property.owner != player:
             player.payrent(self.property)
+            print(f"{player.name} paid rent to {self.property.owner.name}. {player.name}'s money now is: {player.money}")
 #Randomly add or sub from the players money (either gain up to 200hkd or lose up to 300hkd)
 class Chance_Slot(Slot):
     def __init__(self, position, name):

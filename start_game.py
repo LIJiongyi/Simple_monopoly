@@ -2,19 +2,13 @@ from Board_back import Boardclass
 from monopoly_game_logic import Monopolyclass
 import random
 import string
-
+from Gameboard import mainscreen
 def generate_random_name():
     length = random.randint(1, 20)
     return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
 
 #Player management
 def Start_gameclass(board_instance: Boardclass, monopoly_game: Monopolyclass):
-    # global board_instance 
-    # board_instance = board()
-    # monopoly_game = Monopoly()
-
-    # adds player up to 8, type 'done' to finish adding more players
-    # print("Enter player names (max 8 players). Type 'done' when finished:")
 
     while True:  # 无限循环，直到有足够的玩家才退出
         monopoly_game.players = []  # 重置玩家列表，以便重新输入所有玩家
@@ -43,10 +37,8 @@ def Start_gameclass(board_instance: Boardclass, monopoly_game: Monopolyclass):
                 continue
 
         if len(monopoly_game.players) >= 2:
+            mainscreen()
             break  # 玩家数量足够，退出外层循环开始游戏
 
     while True: 
         monopoly_game.turns()
-
-        # if len(monopoly_game.players) == 1:
-        #     print(f"The game ended! {monopoly_game.players[0].name} wins!")
