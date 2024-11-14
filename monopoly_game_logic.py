@@ -5,6 +5,8 @@ import sys
 from Gameboard import mainscreen
 # Game Logic
 class Monopolyclass:
+    dice1=0
+    dice2=0
     def __init__(self):
         self.players = []
         self.round_count = 0  # count round
