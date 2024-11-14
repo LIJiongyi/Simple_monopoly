@@ -1,6 +1,7 @@
 import pygame
 import sys
 from Board_back import Boardclass
+from monopoly_game_logic import Monopolyclass
 
 
 # Initialize Pygame
@@ -21,6 +22,13 @@ dark_blue=(0,0,139)
 orange=(255, 165, 0)
 red=(255, 0, 0)
 yellow=(255, 255, 0)
+#Initial check point data
+
+
+
+
+
+
 # Set up fonts
 font = pygame.font.Font(None, 50)
 
@@ -85,16 +93,14 @@ chance3_image=pygame.transform.scale(Yuenlong_image, (block_size-5, block_size-5
 TaiO_image=pygame.image.load('Image_monopoly/Tai_O.png')
 TaiO_image=pygame.transform.scale(TaiO_image, (block_size-5, block_size-5))
 
+#Sketch board
 def draw_board():
     #draw outerline
     pygame.draw.rect(screen, black, (20, 20, screen_size - 40, screen_size - 40), 3)
 
-
 def add_image(image,x,y):
     img_rect = image.get_rect(center=(x, y))
     screen.blit(image, img_rect)
-
-
 
 def draw_go_block():
     block_x=screen_size - 20 - block_size
@@ -102,7 +108,6 @@ def draw_go_block():
     pygame.draw.rect(screen, black,
                      (block_x, block_y, block_size, block_size), 3)
     add_image(go_image, block_x + block_size // 2, block_y + block_size // 2)
-
 
 def draw_central_block():
     block_x=screen_size- 140- block_size
@@ -117,8 +122,6 @@ def draw_wanchai_block():
     pygame.draw.rect(screen,black,
                      (block_x,block_y,block_size,block_size), 3)
     add_image(wanchai_image,block_x+block_size // 2,block_y+block_size // 2)
-
-
 
 def draw_incometax_block():
     block_x=screen_size- 380 -block_size
@@ -265,6 +268,33 @@ def draw_players(player_positions):
         player_x = (position % 10) * block_size
         player_y = (position // 10) * block_size
         pygame.draw.circle(screen, red, (player_x, player_y), 10)
+
+#sketch dice
+def draw_dice():
+    if Monopolyclass.dice1 == 1:
+        add_image()
+    if Monopolyclass.dice1 == 2:
+        add_image()
+    if Monopolyclass.dice1 == 3:
+        add_image()
+    if Monopolyclass.dice1 == 4:
+        add_image()
+    if Monopolyclass.dice1 == 5:
+        add_image()
+    if Monopolyclass.dice1 == 6:
+        add_image()
+    if Monopolyclass.dice2 == 1:
+        add_image()
+    if Monopolyclass.dice2 == 2:
+        add_image()
+    if Monopolyclass.dice2 == 3:
+        add_image()
+    if Monopolyclass.dice2 == 4:
+        add_image()
+    if Monopolyclass.dice2 == 5:
+        add_image()
+    if Monopolyclass.dice2 == 6:
+        add_image()
 
 
 
