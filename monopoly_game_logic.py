@@ -2,7 +2,7 @@ import random
 from Player import Playerclass
 from Board_back import Boardclass, Property_Slot, Chance_Slot, Gotojail_Slot,Goslot,Tax_Slot,Free_Parking_Slot, Visiting_Slot  # note that the first word can also be uppercase, it is a OS system(Windows,Unix)
 import sys
-
+from Gameboard import mainscreen
 # Game Logic
 class Monopolyclass:
     def __init__(self):
@@ -72,8 +72,15 @@ class Monopolyclass:
                 print("Player Eliminated")
         
             self.current_position = (self.current_position + 1) % len(self.players)
-            self.turn_count +=1 # not sure if it is right to add riaht here, check again first
-            # Display all players' money and position
+            self.turn_count +=1 # have not tested yet
+
+            # Display all players' money and position in CLI
+
+            player_positions = [p.position for p in self.players]
+            # Display all players' money and position in UI
+            mainscreen(player_positions)
+
+
             for p in self.players:
                 print(f"{p.name}'s money: {p.money}")  # print each player's money
                 print(f"{p.name}'s position: {p.position + 1}")  # print each player's position

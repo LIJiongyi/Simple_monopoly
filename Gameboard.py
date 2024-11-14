@@ -1,5 +1,7 @@
 import pygame
 import sys
+from Board_back import Boardclass
+
 
 # Initialize Pygame
 pygame.init()
@@ -257,6 +259,12 @@ def draw_taio_block():
 
     add_image(TaiO_image,block_x+block_size // 2,block_y+block_size // 2)
 
+def draw_players(player_positions):
+    for position in player_positions:
+        # Calculate player position on the board
+        player_x = (position % 10) * block_size
+        player_y = (position // 10) * block_size
+        pygame.draw.circle(screen, red, (player_x, player_y), 10)
 
 
 
@@ -314,8 +322,7 @@ def draw_taio_block():
 
 
 
-
-def mainscreen():
+def mainscreen(player_positions):
     # Main loop
     running = True
     while running:
@@ -355,6 +362,9 @@ def mainscreen():
         draw_yuenlong_block()
         draw_chance3_block()
         draw_taio_block()
+
+        draw_players(player_positions)
+
         # Update the display
         pygame.display.flip()
 
