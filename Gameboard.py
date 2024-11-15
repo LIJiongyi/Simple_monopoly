@@ -362,7 +362,7 @@ def mainscreen(playerposition):
         screen.fill(white)
         #Keeping drawing board
         drawing()
-        draw_player()
+        draw_player(playerposition)
         # Update the display
         pygame.display.flip()
 mainscreen()
