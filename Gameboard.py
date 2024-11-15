@@ -8,12 +8,6 @@ from monopoly_game_logic import Monopolyclass
 # Initialize Pygame
 pygame.init()
 
-# Set up the display
-screen_size = 760
-block_size=120
-screen = pygame.display.set_mode((screen_size, screen_size))
-pygame.display.set_caption("Monopoly Game Board")
-
 # Initial colors
 white=(255, 255, 255)
 black=(0, 0, 0)
@@ -23,6 +17,14 @@ dark_blue=(0,0,139)
 orange=(255, 165, 0)
 red=(255, 0, 0)
 yellow=(255, 255, 0)
+
+# Set up the display
+font = pygame.font.Font(None, 50)
+screen_size = 760
+block_size=120
+screen = pygame.display.set_mode((screen_size, screen_size))
+pygame.display.set_caption("Monopoly Game Board")
+
 #Initial check point data
 player_index=0
 
@@ -94,43 +96,64 @@ chance3_image=pygame.transform.scale(Yuenlong_image, (block_size-5, block_size-5
 TaiO_image=pygame.image.load('Image_monopoly/Tai_O.png')
 TaiO_image=pygame.transform.scale(TaiO_image, (block_size-5, block_size-5))
 
-#Sketch board
-def draw_board():
-    #draw outerline
-    pygame.draw.rect(screen, black, (20, 20, screen_size - 40, screen_size - 40), 3)
+#load dice images
+dice1=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/dice_1.png')
+dice1=pygame.transform.scale(dice1, (block_size-5, block_size-5))
+dice2=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/dice_2.png')
+dice2=pygame.transform.scale(dice2, (block_size-5, block_size-5))
+dice3=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/dice_3.png')
+dice3=pygame.transform.scale(dice3, (block_size-5, block_size-5))
+dice4=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/dice_4.png')
+dice4=pygame.transform.scale(dice4, (block_size-5, block_size-5))
+dice5=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/dice_5.png')
+dice5=pygame.transform.scale(dice5, (block_size-5, block_size-5))
+dice6=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/dice_6.png')
+dice6=pygame.transform.scale(dice6, (block_size-5, block_size-5))
 
+#addimage
 def add_image(image,x,y):
     img_rect = image.get_rect(center=(x, y))
     screen.blit(image, img_rect)
-    
+
+#textinbox
 def text_in_box(text,font,color,x,y,length,height):
     textsurface=font.render(text,True,color)
     text_rect=textsurface.get_rect()
     text_rect.center=(x+length/2,y+height/2)
     screen.blit(textsurface,text_rect)
 
-def draw_go_block():
+#Sketch board
+def drawing():
+    #draw the board
+    pygame.draw.rect(screen, black, (20, 20, screen_size - 40, screen_size - 40), 3)
+    # Render the text
+    text = font.render("MONOPOLY", True, black)
+    text_rect = text.get_rect(center=(screen_size // 2, screen_size // 2))
+    screen.blit(text, text_rect)
+
+    #draw_go_block():
     block_x=screen_size - 20 - block_size
     block_y=screen_size - 20 - block_size
     pygame.draw.rect(screen, black,
                      (block_x, block_y, block_size, block_size), 3)
     add_image(go_image, block_x + block_size // 2, block_y + block_size // 2)
 
-def draw_central_block():
+
+    #draw_central_block():
     block_x=screen_size- 140- block_size
     block_y=screen_size- 20 -block_size
     pygame.draw.rect(screen,black,
                      (block_x,block_y,block_size,block_size), 3)
     add_image(central_image, block_x + block_size // 2, block_y + block_size // 2)
 
-def draw_wanchai_block():
+    #draw_wanchai_block():
     block_x=screen_size- 260 -block_size
     block_y=screen_size- 20 -block_size
     pygame.draw.rect(screen,black,
                      (block_x,block_y,block_size,block_size), 3)
     add_image(wanchai_image,block_x+block_size // 2,block_y+block_size // 2)
 
-def draw_incometax_block():
+    #draw_incometax_block():
     block_x=screen_size- 380 -block_size
     block_y=screen_size- 20 -block_size
     pygame.draw.rect(screen,black,
@@ -139,7 +162,7 @@ def draw_incometax_block():
     add_image(incometax_image,block_x+block_size // 2,block_y+block_size // 2)
 
 
-def draw_stanley_block():
+    #draw_stanley_block():
     block_x=screen_size- 500 -block_size
     block_y=screen_size- 20 -block_size
     pygame.draw.rect(screen, black,
@@ -148,7 +171,7 @@ def draw_stanley_block():
     add_image(Stanley_image,block_x+block_size // 2,block_y+block_size // 2)
 
 
-def draw_jail_block():
+    #draw_jail_block():
     block_x=screen_size- 620 -block_size
     block_y=screen_size- 20 -block_size
     pygame.draw.rect(screen, black,
@@ -156,7 +179,7 @@ def draw_jail_block():
 
     add_image(Jail_image,block_x+block_size // 2,block_y+block_size // 2)
 
-def draw_sheko_block():
+    #draw_sheko_block():
     block_x=screen_size- 620 -block_size
     block_y=screen_size- 140-block_size
     pygame.draw.rect(screen, black,
@@ -164,7 +187,7 @@ def draw_sheko_block():
 
     add_image(sheko_image,block_x+block_size // 2,block_y+block_size // 2)
 
-def draw_mongkok_block():
+    #draw_mongkok_block():
     block_x=screen_size-620-block_size
     block_y=screen_size-260-block_size
     pygame.draw.rect(screen, black,
@@ -172,15 +195,15 @@ def draw_mongkok_block():
 
     add_image(mongkok_image,block_x+block_size // 2,block_y+block_size // 2)
 
-def draw_chance_block():
+    #draw_chance_block():
     block_x=screen_size-620-block_size
     block_y=screen_size-380-block_size
     pygame.draw.rect(screen, black,
                      (block_x,block_y , block_size, block_size), 3)
 
-    add_image(chance_image,block_x+block_size // 2,block_y+block_size // 2)
+    add_image(chance1_image,block_x+block_size // 2,block_y+block_size // 2)
 
-def draw_TsingYi_block():
+    #draw_TsingYi_block():
     block_x=screen_size-620-block_size
     block_y=screen_size-500-block_size
     pygame.draw.rect(screen, black,
@@ -188,7 +211,7 @@ def draw_TsingYi_block():
 
     add_image(TsingYi_image,block_x+block_size // 2,block_y+block_size // 2)
 
-def draw_Freeparking_block():
+    #draw_Freeparking_block():
     block_x=screen_size-620-block_size
     block_y=screen_size-620-block_size
     pygame.draw.rect(screen, black,
@@ -196,7 +219,7 @@ def draw_Freeparking_block():
 
     add_image(Freeparking_image,block_x+block_size // 2,block_y+block_size // 2)
 
-def draw_Shatin_block():
+    #draw_Shatin_block():
     block_x=screen_size-500-block_size
     block_y=screen_size-620-block_size
     pygame.draw.rect(screen, black,
@@ -204,7 +227,7 @@ def draw_Shatin_block():
 
     add_image(Shatin_image,block_x+block_size // 2,block_y+block_size // 2)
 
-def draw_chance2_block():
+    #draw_chance2_block():
     block_x=screen_size-380-block_size
     block_y=screen_size-620-block_size
     pygame.draw.rect(screen, black,
@@ -213,14 +236,14 @@ def draw_chance2_block():
     add_image(chance2_image,block_x+block_size // 2,block_y+block_size // 2)
 
 
-def draw_Tuenmun_block():
+    #draw_Tuenmun_block():
     block_x=screen_size-260-block_size
     block_y=screen_size-620-block_size
     pygame.draw.rect(screen, black,
                      (block_x,block_y , block_size, block_size), 3)
 
     add_image(TuenMun_image,block_x+block_size // 2,block_y+block_size // 2)
-def draw_taipo_block():
+    #draw_taipo_block():
     block_x=screen_size-140-block_size
     block_y=screen_size-620-block_size
     pygame.draw.rect(screen, black,
@@ -228,7 +251,7 @@ def draw_taipo_block():
 
     add_image(Taipo_image,block_x+block_size // 2,block_y+block_size // 2)
 
-def draw_Go_to_jail_block():
+    #draw_Go_to_jail_block():
     block_x=screen_size-20-block_size
     block_y=screen_size-620-block_size
     pygame.draw.rect(screen, black,
@@ -236,7 +259,7 @@ def draw_Go_to_jail_block():
 
     add_image(Go_to_jail_image,block_x+block_size // 2,block_y+block_size // 2)
 
-def draw_saikung_block():
+    #draw_saikung_block():
     block_x=screen_size-20-block_size
     block_y=screen_size-500-block_size
     pygame.draw.rect(screen, black,
@@ -244,7 +267,7 @@ def draw_saikung_block():
 
     add_image(Saikung_image,block_x+block_size // 2,block_y+block_size // 2)
 
-def draw_yuenlong_block():
+    #draw_yuenlong_block():
     block_x=screen_size-20-block_size
     block_y=screen_size-380-block_size
     pygame.draw.rect(screen, black,
@@ -253,7 +276,7 @@ def draw_yuenlong_block():
     add_image(Yuenlong_image,block_x+block_size // 2,block_y+block_size // 2)
 
 
-def draw_chance3_block():
+    #draw_chance3_block():
     block_x=screen_size-20-block_size
     block_y=screen_size-260-block_size
     pygame.draw.rect(screen, black,
@@ -261,23 +284,16 @@ def draw_chance3_block():
 
     add_image(chance3_image,block_x+block_size // 2,block_y+block_size // 2)
 
-def draw_taio_block():
+    #draw_taio_block():
     block_x=screen_size-20-block_size
     block_y=screen_size-140-block_size
     pygame.draw.rect(screen, black,
                      (block_x,block_y , block_size, block_size), 3)
 
     add_image(TaiO_image,block_x+block_size // 2,block_y+block_size // 2)
-
-def draw_players(player_positions):
-    for position in player_positions:
-        # Calculate player position on the board
-        player_x = (position % 10) * block_size
-        player_y = (position // 10) * block_size
-        pygame.draw.circle(screen, red, (player_x, player_y), 10)
-
-#sketch dice
-def draw_dice():
+########################################################################################################################
+    
+    #sketch dice
     text_in_box("Player %r's turn "%(player_index+1),font,sky_blue,240,300,300,40)
     x_axis_dice1=260
     x_axis_dice2=500
@@ -308,10 +324,31 @@ def draw_dice():
     if Monopolyclass.dice2 == 6:
         add_image(dice6,x_axis_dice2,y_axis)
 
+    #Sketch botton
+    
 
 
 
-def mainscreen(player_positions):
+
+
+
+
+
+
+
+
+
+
+
+def draw_players(player_positions):
+    for position in player_positions:
+        # Calculate player position on the board
+        player_x = (position % 10) * block_size
+        player_y = (position // 10) * block_size
+        pygame.draw.circle(screen, red, (player_x, player_y), 10)
+
+#Main function
+def mainscreen(playerposition):
     # Main loop
     running = True
     while running:
@@ -320,40 +357,12 @@ def mainscreen(player_positions):
                 pygame.quit()
                 sys.exit()
 
+
         # Fill the background with white
         screen.fill(white)
-
-        # Render the text
-        text = font.render("MONOPOLY", True, black)
-        text_rect = text.get_rect(center=(screen_size // 2, screen_size // 2))
-        screen.blit(text, text_rect)
-
-        # Draw the board lines
-        draw_board()
-        #draw blocks
-        draw_go_block()
-        draw_central_block()
-        draw_wanchai_block()
-        draw_incometax_block()
-        draw_stanley_block()
-        draw_jail_block()
-        draw_sheko_block()
-        draw_mongkok_block()
-        draw_chance_block()
-        draw_TsingYi_block()
-        draw_Freeparking_block()
-        draw_Shatin_block()
-        draw_chance2_block()
-        draw_Tuenmun_block()
-        draw_taipo_block()
-        draw_Go_to_jail_block()
-        draw_saikung_block()
-        draw_yuenlong_block()
-        draw_chance3_block()
-        draw_taio_block()
-
-        draw_players(player_positions)
-
+        #Keeping drawing board
+        drawing()
+        draw_player()
         # Update the display
         pygame.display.flip()
-    mainscreen()
+mainscreen()
