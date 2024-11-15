@@ -1,6 +1,7 @@
 import pygame
 import sys
-from Board_back import Boardclass
+from Board_back import Boardclass, Property_Slot, Chance_Slot, Gotojail_Slot,Goslot,Tax_Slot,Free_Parking_Slot, Visiting_Slot
+from Player import Playerclass
 from monopoly_game_logic import Monopolyclass
 
 
@@ -23,7 +24,7 @@ orange=(255, 165, 0)
 red=(255, 0, 0)
 yellow=(255, 255, 0)
 #Initial check point data
-
+player_index=0
 
 
 
@@ -101,6 +102,12 @@ def draw_board():
 def add_image(image,x,y):
     img_rect = image.get_rect(center=(x, y))
     screen.blit(image, img_rect)
+    
+def text_in_box(text,font,color,x,y,length,height):
+    textsurface=font.render(text,True,color)
+    text_rect=textsurface.get_rect()
+    text_rect.center=(x+length/2,y+height/2)
+    screen.blit(textsurface,text_rect)
 
 def draw_go_block():
     block_x=screen_size - 20 - block_size
@@ -271,30 +278,35 @@ def draw_players(player_positions):
 
 #sketch dice
 def draw_dice():
+    text_in_box("Player %r's turn "%(player_index+1),font,sky_blue,240,300,300,40)
+    x_axis_dice1=260
+    x_axis_dice2=500
+    y_axis=200
+
     if Monopolyclass.dice1 == 1:
-        add_image()
+        add_image(dice1,x_axis_dice1,y_axis)
     if Monopolyclass.dice1 == 2:
-        add_image()
+        add_image(dice2,x_axis_dice1,y_axis)
     if Monopolyclass.dice1 == 3:
-        add_image()
+        add_image(dice3,x_axis_dice1,y_axis)
     if Monopolyclass.dice1 == 4:
-        add_image()
+        add_image(dice4,x_axis_dice1,y_axis)
     if Monopolyclass.dice1 == 5:
-        add_image()
+        add_image(dice5,x_axis_dice1,y_axis)
     if Monopolyclass.dice1 == 6:
-        add_image()
+        add_image(dice6,x_axis_dice1,y_axis)
     if Monopolyclass.dice2 == 1:
-        add_image()
+        add_image(dice1,x_axis_dice2,y_axis)
     if Monopolyclass.dice2 == 2:
-        add_image()
+        add_image(dice2,x_axis_dice2,y_axis)
     if Monopolyclass.dice2 == 3:
-        add_image()
+        add_image(dice3,x_axis_dice2,y_axis)
     if Monopolyclass.dice2 == 4:
-        add_image()
+        add_image(dice4,x_axis_dice2,y_axis)
     if Monopolyclass.dice2 == 5:
-        add_image()
+        add_image(dice5,x_axis_dice2,y_axis)
     if Monopolyclass.dice2 == 6:
-        add_image()
+        add_image(dice6,x_axis_dice2,y_axis)
 
 
 
@@ -344,3 +356,4 @@ def mainscreen(player_positions):
 
         # Update the display
         pygame.display.flip()
+    mainscreen()
