@@ -201,7 +201,7 @@ def drawing():
     pygame.draw.rect(screen, black,
                      (block_x,block_y , block_size, block_size), 3)
 
-    add_image(chance1_image,block_x+block_size // 2,block_y+block_size // 2)
+    # add_image(chance1_image,block_x+block_size // 2,block_y+block_size // 2)
 
     #draw_TsingYi_block():
     block_x=screen_size-620-block_size
@@ -362,7 +362,7 @@ def mainscreen(playerposition):
         screen.fill(white)
         #Keeping drawing board
         drawing()
-        draw_player(playerposition)
+        draw_players(playerposition)
         # Update the display
         pygame.display.flip()
 mainscreen()
