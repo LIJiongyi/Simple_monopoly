@@ -21,6 +21,9 @@ def Start_gameclass(board_instance: Boardclass, monopoly_game: Monopolyclass):
                 if not name:
                     print("Error: No name entered. Please enter a valid name.")
                     continue
+                if any(player.name == name for player in monopoly_game.players):
+                    print("Error: Name already taken. Please enter a different name.")
+                    continue
                 monopoly_game.add_player(name)
                 print(f"Added player: {name}")
             elif choice == 'generate':

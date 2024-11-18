@@ -2,7 +2,7 @@ import pygame
 import sys
 from Board_back import Boardclass, Property_Slot, Chance_Slot, Gotojail_Slot,Goslot,Tax_Slot,Free_Parking_Slot, Visiting_Slot
 from Player import Playerclass
-from monopoly_game_logic import Monopolyclass
+
 
 
 # Initialize Pygame
@@ -97,7 +97,7 @@ TaiO_image=pygame.image.load('Image_monopoly/Tai_O.png')
 TaiO_image=pygame.transform.scale(TaiO_image, (block_size-5, block_size-5))
 
 #load dice images
-dice1=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/dice_1.png')
+'''dice1=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/dice_1.png')
 dice1=pygame.transform.scale(dice1, (block_size-5, block_size-5))
 dice2=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/dice_2.png')
 dice2=pygame.transform.scale(dice2, (block_size-5, block_size-5))
@@ -109,7 +109,19 @@ dice5=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/I
 dice5=pygame.transform.scale(dice5, (block_size-5, block_size-5))
 dice6=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/dice_6.png')
 dice6=pygame.transform.scale(dice6, (block_size-5, block_size-5))
-
+'''
+dice1=pygame.image.load('Image_monopoly/Go.png')  # only for testing
+dice1=pygame.transform.scale(dice1, (block_size-5, block_size-5))
+dice2=pygame.image.load('Image_monopoly/Go.png')
+dice2=pygame.transform.scale(dice2, (block_size-5, block_size-5))
+dice3=pygame.image.load('Image_monopoly/Go.png')
+dice3=pygame.transform.scale(dice3, (block_size-5, block_size-5))
+dice4=pygame.image.load('Image_monopoly/Go.png')
+dice4=pygame.transform.scale(dice4, (block_size-5, block_size-5))
+dice5=pygame.image.load('Image_monopoly/Go.png')
+dice5=pygame.transform.scale(dice5, (block_size-5, block_size-5))
+dice6=pygame.image.load('Image_monopoly/Go.png')
+dice6=pygame.transform.scale(dice6, (block_size-5, block_size-5))
 #addimage
 def add_image(image,x,y):
     img_rect = image.get_rect(center=(x, y))
@@ -124,6 +136,8 @@ def text_in_box(text,font,color,x,y,length,height):
 
 #Sketch board
 def drawing():
+    from monopoly_game_logic import Monopolyclass
+
     #draw the board
     pygame.draw.rect(screen, black, (20, 20, screen_size - 40, screen_size - 40), 3)
     # Render the text
@@ -292,12 +306,13 @@ def drawing():
 
     add_image(TaiO_image,block_x+block_size // 2,block_y+block_size // 2)
 ########################################################################################################################
-    
-    #sketch dice
+
+        #sketch dice
     text_in_box("Player %r's turn "%(player_index+1),font,sky_blue,240,300,300,40)
     x_axis_dice1=260
     x_axis_dice2=500
     y_axis=200
+
 
     if Monopolyclass.dice1 == 1:
         add_image(dice1,x_axis_dice1,y_axis)
@@ -349,6 +364,7 @@ def draw_players(player_positions):
 
 #Main function
 def mainscreen(playerposition):
+
     # Main loop
     running = True
     while running:
@@ -365,4 +381,4 @@ def mainscreen(playerposition):
         draw_players(playerposition)
         # Update the display
         pygame.display.flip()
-mainscreen()
+# mainscreen()
