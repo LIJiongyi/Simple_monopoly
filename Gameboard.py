@@ -1,9 +1,9 @@
 import pygame
 import sys
+import random
 from Board_back import Boardclass, Property_Slot, Chance_Slot, Gotojail_Slot,Goslot,Tax_Slot,Free_Parking_Slot, Visiting_Slot
 from Player import Playerclass
-
-
+from monopoly_game_logic import Monopolyclass
 
 # Initialize Pygame
 pygame.init()
@@ -25,8 +25,11 @@ block_size=120
 screen = pygame.display.set_mode((screen_size, screen_size))
 pygame.display.set_caption("Monopoly Game Board")
 
-#Initial check point data
+#check point init
 player_index=0
+game = Monopolyclass()
+game.add_player("Player1")
+game.add_player("Player2")
 
 
 
@@ -122,20 +125,28 @@ dice5=pygame.image.load('Image_monopoly/Go.png')
 dice5=pygame.transform.scale(dice5, (block_size-5, block_size-5))
 dice6=pygame.image.load('Image_monopoly/Go.png')
 dice6=pygame.transform.scale(dice6, (block_size-5, block_size-5))
-#addimage
+
+#add image function
 def add_image(image,x,y):
     img_rect = image.get_rect(center=(x, y))
     screen.blit(image, img_rect)
-
-#textinbox
+#add text function
 def text_in_box(text,font,color,x,y,length,height):
     textsurface=font.render(text,True,color)
     text_rect=textsurface.get_rect()
     text_rect.center=(x+length/2,y+height/2)
     screen.blit(textsurface,text_rect)
+#add animation function
+def roll_dice_animation(game_instance):
+    for _ in range(30):  # 30帧的动画
+        game_instance.dice1 = random.randint(1, 6)
+        game_instance.dice2 = random.randint(1, 6)
+        drawing(game_instance)
+        pygame.display.flip()
+        pygame.time.delay(100)
 
 #Sketch board
-def drawing():
+def drawing(game_instance):
     from monopoly_game_logic import Monopolyclass
 
     #draw the board
@@ -307,39 +318,42 @@ def drawing():
     add_image(TaiO_image,block_x+block_size // 2,block_y+block_size // 2)
 ########################################################################################################################
 
-        #sketch dice
-    text_in_box("Player %r's turn "%(player_index+1),font,sky_blue,240,300,300,40)
+    #sketch dice
+    
     x_axis_dice1=260
     x_axis_dice2=500
     y_axis=200
 
 
-    if Monopolyclass.dice1 == 1:
-        add_image(dice1,x_axis_dice1,y_axis)
-    if Monopolyclass.dice1 == 2:
-        add_image(dice2,x_axis_dice1,y_axis)
-    if Monopolyclass.dice1 == 3:
-        add_image(dice3,x_axis_dice1,y_axis)
-    if Monopolyclass.dice1 == 4:
-        add_image(dice4,x_axis_dice1,y_axis)
-    if Monopolyclass.dice1 == 5:
-        add_image(dice5,x_axis_dice1,y_axis)
-    if Monopolyclass.dice1 == 6:
-        add_image(dice6,x_axis_dice1,y_axis)
-    if Monopolyclass.dice2 == 1:
-        add_image(dice1,x_axis_dice2,y_axis)
-    if Monopolyclass.dice2 == 2:
-        add_image(dice2,x_axis_dice2,y_axis)
-    if Monopolyclass.dice2 == 3:
-        add_image(dice3,x_axis_dice2,y_axis)
-    if Monopolyclass.dice2 == 4:
-        add_image(dice4,x_axis_dice2,y_axis)
-    if Monopolyclass.dice2 == 5:
-        add_image(dice5,x_axis_dice2,y_axis)
-    if Monopolyclass.dice2 == 6:
-        add_image(dice6,x_axis_dice2,y_axis)
+    if game_instance.dice1 == 1:
+        add_image(dice1, x_axis_dice1, y_axis)
+    elif game_instance.dice1 == 2:
+        add_image(dice2, x_axis_dice1, y_axis)
+    elif game_instance.dice1 == 3:
+        add_image(dice3, x_axis_dice1, y_axis)
+    elif game_instance.dice1 == 4:
+        add_image(dice4, x_axis_dice1, y_axis)
+    elif game_instance.dice1 == 5:
+        add_image(dice5, x_axis_dice1, y_axis)
+    elif game_instance.dice1 == 6:
+        add_image(dice6, x_axis_dice1, y_axis)
 
-    #Sketch botton
+    if game_instance.dice2 == 1:
+        add_image(dice1, x_axis_dice2, y_axis)
+    elif game_instance.dice2 == 2:
+        add_image(dice2, x_axis_dice2, y_axis)
+    elif game_instance.dice2 == 3:
+        add_image(dice3, x_axis_dice2, y_axis)
+    elif game_instance.dice2 == 4:
+        add_image(dice4, x_axis_dice2, y_axis)
+    elif game_instance.dice2 == 5:
+        add_image(dice5, x_axis_dice2, y_axis)
+    elif game_instance.dice2 == 6:
+        add_image(dice6, x_axis_dice2, y_axis)
+    
+    #sketch botton
+    game_instance.botton(screen,font)
+    
     
 
 
@@ -363,8 +377,7 @@ def draw_players(player_positions):
         pygame.draw.circle(screen, red, (player_x, player_y), 10)
 
 #Main function
-def mainscreen(playerposition):
-
+def mainscreen():
     # Main loop
     running = True
     while running:
@@ -372,13 +385,20 @@ def mainscreen(playerposition):
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                if game.if_botton_clicked(mouse_pos):
+                    roll_dice_animation(game)# animation of dice
+                    game.roll_dice()
+                    game.turns()  # player turn
 
 
         # Fill the background with white
         screen.fill(white)
         #Keeping drawing board
-        drawing()
-        draw_players(playerposition)
-        # Update the display
+        drawing(game)
+
+        #draw_players([p.position for p in game.players])
+        #Update the display
         pygame.display.flip()
-# mainscreen()
+mainscreen()
