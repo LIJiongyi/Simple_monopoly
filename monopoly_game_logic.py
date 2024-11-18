@@ -45,8 +45,7 @@ class Monopolyclass:
         self.turn_count = game_state["turn_count"]
         self.current_position = game_state["current_position"]
         print(f"Game state loaded from {filename}")
-    dice1=0
-    dice2=0
+ 
     def __init__(self):
         self.players = []
         self.round_count = 0  # count round
@@ -60,9 +59,30 @@ class Monopolyclass:
 
     # Roll dices
     def roll_dice(self):
-        dice1 = random.randint(1,6)
-        dice2 = random.randint(1,6)
-        return dice1, dice2
+        self.dice1 = random.randint(1,6)
+        self.dice2 = random.randint(1,6)
+        return self.dice1,self.dice2
+
+
+    #button function
+    def button(self,screen,font):
+        self.button_width=200
+        self.button_height=50
+        self.button_x = (screen.get_width() // 2) - (self.button_width // 2)
+        self.button_y = screen.get_height() - 200  # 按钮位置靠近底部
+
+        # 存储按钮矩形用于检测点击
+        self.roll_dice_button_rect = pygame.Rect(self.button_x, self.button_y, self.button_width, self.button_height)
+        pygame.draw.rect(screen, (0, 255, 0), self.roll_dice_button_rect)
+
+        text_surface = font.render("Roll Dice", True, (255, 255, 255))
+        text_rect = text_surface.get_rect(center=self.roll_dice_button_rect.center)
+        screen.blit(text_surface, text_rect)
+
+    def if_botton_clicked(self, mouse_pos):
+        if hasattr(self, 'roll_dice_button_rect') and self.roll_dice_button_rect.collidepoint(mouse_pos):
+            return True
+        return False
 
     # player roll 2 dices and move accordin to the sum of both dices    
     def turns(self):  # main game playing logic/
