@@ -24,83 +24,72 @@ screen_size = 760
 block_size=120
 screen = pygame.display.set_mode((screen_size, screen_size))
 pygame.display.set_caption("Monopoly Game Board")
-
 #check point init
-player_index=0
-game = Monopolyclass()
-game.add_player("Player1")
-game.add_player("Player2")
 
-
-
-
-
-# Set up fonts
-font = pygame.font.Font(None, 50)
 
 #load images
-go_image=pygame.image.load('Image_monopoly/Go.png')
+go_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Go.png')
 go_image=pygame.transform.scale(go_image, (block_size-5, block_size-5))
 
-central_image=pygame.image.load('Image_monopoly/Central.png')
+central_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Central.png')
 central_image=pygame.transform.scale(central_image, (block_size-5, block_size-5))
 
-wanchai_image=pygame.image.load('Image_monopoly/Wan_chai.png')
+wanchai_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Wan Chai.png')
 wanchai_image=pygame.transform.scale(wanchai_image, (block_size-5, block_size-5))
 
-incometax_image=pygame.image.load('Image_monopoly/Income_tax.png')
+incometax_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/income tax.png')
 incometax_image=pygame.transform.scale(incometax_image, (block_size-5, block_size-5))
 
-Stanley_image=pygame.image.load('Image_monopoly/Stanley.png')
+Stanley_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Stanley.png')
 Stanley_image=pygame.transform.scale(Stanley_image, (block_size-5, block_size-5))
 
-Jail_image=pygame.image.load('Image_monopoly/In_Jail.png')
+Jail_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/In Jail.png')
 Jail_image=pygame.transform.scale(Jail_image, (block_size-5, block_size-5))
 
-sheko_image=pygame.image.load('Image_monopoly/Sheko.png')
+sheko_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Sheko.png')
 sheko_image=pygame.transform.scale(sheko_image, (block_size-5, block_size-5))
 
-mongkok_image=pygame.image.load('Image_monopoly/Mong_kok.png')
+mongkok_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Mong kok.png')
 mongkok_image=pygame.transform.scale(mongkok_image, (block_size-5, block_size-5))
 
-chance_image=pygame.image.load('Image_monopoly/Chance.png')
-chance_image=pygame.transform.scale(chance_image, (block_size-5, block_size-5))
+chance1_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/chance 1.png')
+chance1_image=pygame.transform.scale(chance1_image, (block_size-5, block_size-5))
 
-TsingYi_image=pygame.image.load('Image_monopoly/Tsing_Yi.png')
+TsingYi_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Tsing YI.png')
 TsingYi_image=pygame.transform.scale(TsingYi_image, (block_size-5, block_size-5))
 
-Freeparking_image=pygame.image.load('Image_monopoly/Free_parking.png')
+Freeparking_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Free parking.png')
 Freeparking_image=pygame.transform.scale(Freeparking_image, (block_size-5, block_size-5))
 
-Shatin_image=pygame.image.load('Image_monopoly/Shatin.png')
+Shatin_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Shatin.png')
 Shatin_image=pygame.transform.scale(Shatin_image, (block_size-5, block_size-5))
 
-chance2_image=pygame.image.load('Image_monopoly/Chance_2.png')
+chance2_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/chance 2.png')
 chance2_image=pygame.transform.scale(chance2_image, (block_size-5, block_size-5))
 
-TuenMun_image=pygame.image.load('Image_monopoly/Tuen_Mun.png')
+TuenMun_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Tuen Mun.png')
 TuenMun_image=pygame.transform.scale(TuenMun_image, (block_size-5, block_size-5))
 
-Taipo_image=pygame.image.load('Image_monopoly/Tai_O.png')
+Taipo_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Tai po.png')
 Taipo_image=pygame.transform.scale(Taipo_image, (block_size-5, block_size-5))
 
-Go_to_jail_image=pygame.image.load('Image_monopoly/Go_to_jail.png')
+Go_to_jail_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Go to jail.png')
 Go_to_jail_image=pygame.transform.scale(Go_to_jail_image, (block_size-5, block_size-5))
 
-Saikung_image=pygame.image.load('Image_monopoly/Sai_Kung.png')
+Saikung_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Sai Kung.png')
 Saikung_image=pygame.transform.scale(Saikung_image, (block_size-5, block_size-5))
 
-Yuenlong_image=pygame.image.load('Image_monopoly/Yuen_Long.png')
+Yuenlong_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Yuen Long.png')
 Yuenlong_image=pygame.transform.scale(Yuenlong_image, (block_size-5, block_size-5))
 
-chance3_image=pygame.image.load('Image_monopoly/chance_3.png')
+chance3_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/chance 3.png')
 chance3_image=pygame.transform.scale(Yuenlong_image, (block_size-5, block_size-5))
 
-TaiO_image=pygame.image.load('Image_monopoly/Tai_O.png')
+TaiO_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Tai O.png')
 TaiO_image=pygame.transform.scale(TaiO_image, (block_size-5, block_size-5))
 
 #load dice images
-'''dice1=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/dice_1.png')
+dice1=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/dice_1.png')
 dice1=pygame.transform.scale(dice1, (block_size-5, block_size-5))
 dice2=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/dice_2.png')
 dice2=pygame.transform.scale(dice2, (block_size-5, block_size-5))
@@ -112,20 +101,8 @@ dice5=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/I
 dice5=pygame.transform.scale(dice5, (block_size-5, block_size-5))
 dice6=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/dice_6.png')
 dice6=pygame.transform.scale(dice6, (block_size-5, block_size-5))
-'''
-dice1=pygame.image.load('Image_monopoly/Go.png')  # only for testing
-dice1=pygame.transform.scale(dice1, (block_size-5, block_size-5))
-dice2=pygame.image.load('Image_monopoly/Go.png')
-dice2=pygame.transform.scale(dice2, (block_size-5, block_size-5))
-dice3=pygame.image.load('Image_monopoly/Go.png')
-dice3=pygame.transform.scale(dice3, (block_size-5, block_size-5))
-dice4=pygame.image.load('Image_monopoly/Go.png')
-dice4=pygame.transform.scale(dice4, (block_size-5, block_size-5))
-dice5=pygame.image.load('Image_monopoly/Go.png')
-dice5=pygame.transform.scale(dice5, (block_size-5, block_size-5))
-dice6=pygame.image.load('Image_monopoly/Go.png')
-dice6=pygame.transform.scale(dice6, (block_size-5, block_size-5))
 
+#sketch board item
 #add image function
 def add_image(image,x,y):
     img_rect = image.get_rect(center=(x, y))
@@ -138,17 +115,15 @@ def text_in_box(text,font,color,x,y,length,height):
     screen.blit(textsurface,text_rect)
 #add animation function
 def roll_dice_animation(game_instance):
-    for _ in range(30):  # 30帧的动画
+    for _ in range(30):  # 30 FPS animation
         game_instance.dice1 = random.randint(1, 6)
         game_instance.dice2 = random.randint(1, 6)
         drawing(game_instance)
         pygame.display.flip()
         pygame.time.delay(100)
 
-#Sketch board
+#sketch board
 def drawing(game_instance):
-    from monopoly_game_logic import Monopolyclass
-
     #draw the board
     pygame.draw.rect(screen, black, (20, 20, screen_size - 40, screen_size - 40), 3)
     # Render the text
@@ -226,7 +201,7 @@ def drawing(game_instance):
     pygame.draw.rect(screen, black,
                      (block_x,block_y , block_size, block_size), 3)
 
-    # add_image(chance1_image,block_x+block_size // 2,block_y+block_size // 2)
+    add_image(chance1_image,block_x+block_size // 2,block_y+block_size // 2)
 
     #draw_TsingYi_block():
     block_x=screen_size-620-block_size
@@ -319,11 +294,14 @@ def drawing(game_instance):
 ########################################################################################################################
 
     #sketch dice
-    
+    if game_instance.players:
+        current_player = game_instance.players[game_instance.current_position]
+        text_in_box(f"{current_player.name} 's turn", font, sky_blue, 240, 300, 300, 40)
+    else:
+        text_in_box("no player", font, sky_blue, 240, 300, 300, 40)
     x_axis_dice1=260
     x_axis_dice2=500
     y_axis=200
-
 
     if game_instance.dice1 == 1:
         add_image(dice1, x_axis_dice1, y_axis)
@@ -350,20 +328,8 @@ def drawing(game_instance):
         add_image(dice5, x_axis_dice2, y_axis)
     elif game_instance.dice2 == 6:
         add_image(dice6, x_axis_dice2, y_axis)
-    
     #sketch botton
-    game_instance.botton(screen,font)
-    
-    
-
-
-
-
-
-
-
-
-
+    game_instance.button(screen,font)
 
 
 
@@ -376,8 +342,10 @@ def draw_players(player_positions):
         player_y = (position // 10) * block_size
         pygame.draw.circle(screen, red, (player_x, player_y), 10)
 
+
+
 #Main function
-def mainscreen():
+def mainscreen(game_instance):
     # Main loop
     running = True
     while running:
@@ -387,18 +355,72 @@ def mainscreen():
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
-                if game.if_botton_clicked(mouse_pos):
-                    roll_dice_animation(game)# animation of dice
-                    game.roll_dice()
-                    game.turns()  # player turn
+                if game_instance.if_button_clicked(mouse_pos):
+                    roll_dice_animation(game_instance)# 播放掷骰子动画
+                    game_instance.roll_dice()
+                    game_instance.turns()  # 处理玩家回合
 
 
         # Fill the background with white
         screen.fill(white)
         #Keeping drawing board
-        drawing(game)
+        drawing(game_instance)
 
         #draw_players([p.position for p in game.players])
-        #Update the display
+        # Update the display
         pygame.display.flip()
-mainscreen()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
