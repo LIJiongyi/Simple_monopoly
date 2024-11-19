@@ -2,10 +2,12 @@ import pygame
 import sys
 import random
 import string
-from monopoly_game_logic import Monopolyclass
+from monopoly_game_logic import Monopolyclass, Playerclass
+from All_slot import Property
 from Board_back import Boardclass
 from Gameboard import mainscreen
 import os
+import json
 # Initialize Pygame
 pygame.init()
 
@@ -87,6 +89,46 @@ class Start_game:
             pygame.display.flip()
             self.clock.tick(30)  # Limit to 30 FPS
 
+    def save_game(self, filename="game_state.json"):
+        game_state = {
+            "players": [
+                {
+                    "name": player.name,
+                    "money": player.money,
+                    "position": player.position,
+                    "properties": [(prop.name, prop.price, prop.rent) for prop in player.properties],
+                    "jail": player.jail,
+                    "jailturns": player.jailturns
+                }
+                for player in self.players
+            ],
+            "round_count": self.round_count,
+            "turn_count": self.turn_count,
+            "current_position": self.current_position
+        }
+        with open(filename, "w") as file:
+            json.dump(game_state, file, indent=4)
+        print(f"Game state saved to {filename}")
+
+    def load_game(self, filename="game_state.json"):
+        with open(filename, "r") as file:
+            game_state = json.load(file)
+        
+        self.players = []
+        for player_data in game_state["players"]:
+            player = Playerclass(player_data["name"], self.board)
+            player.money = player_data["money"]
+            player.position = player_data["position"]
+            player.jail = player_data["jail"]
+            player.jailturns = player_data["jailturns"]
+            player.properties = [Property(name, price, rent) for name, price, rent in player_data["properties"]]
+            self.players.append(player)
+        
+        self.round_count = game_state["round_count"]
+        self.turn_count = game_state["turn_count"]
+        self.current_position = game_state["current_position"]
+        print(f"Game state loaded from {filename}")
+
     def handle_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -116,7 +158,7 @@ class Start_game:
                                     if self.current_player > self.max_players or len(self.game.players) >= self.max_players:
                                         self.collecting_names = False
                                         #Start main board
-                                        mainscreen()
+                                        mainscreen(self.game)
 
                                     else:
                                         # Prepare for next player input

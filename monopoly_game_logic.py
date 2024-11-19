@@ -2,49 +2,12 @@ import random
 from Player import Playerclass
 from Board_back import Boardclass, Property_Slot, Chance_Slot, Gotojail_Slot,Goslot,Tax_Slot,Free_Parking_Slot, Visiting_Slot  # note that the first word can also be uppercase, it is a OS system(Windows,Unix)
 import sys
-from Gameboard import mainscreen
+from utils import mainscreen
 import json
+import pygame
 # Game Logic
 class Monopolyclass:
-    def save_game_state(self, filename):
-        game_state = {
-            "players": [
-                {
-                    "name": player.name,
-                    "money": player.money,
-                    "position": player.position,
-                    "properties": [(prop.name, prop.price, prop.rent) for prop in player.properties],
-                    "jail": player.jail,
-                    "jailturns": player.jailturns
-                }
-                for player in self.players
-            ],
-            "round_count": self.round_count,
-            "turn_count": self.turn_count,
-            "current_position": self.current_position
-        }
-        with open(filename, "w") as file:
-            json.dump(game_state, file, indent=4)
-        print(f"Game state saved to {filename}")
-
-    def load_game(self, filename="game_state.json"):
-        with open(filename, "r") as file:
-            game_state = json.load(file)
-        
-        self.players = []
-        for player_data in game_state["players"]:
-            player = Playerclass(player_data["name"], self.board)
-            player.money = player_data["money"]
-            player.position = player_data["position"]
-            player.jail = player_data["jail"]
-            player.jailturns = player_data["jailturns"]
-            player.properties = [Property(name, price, rent) for name, price, rent in player_data["properties"]]
-            self.players.append(player)
-        
-        self.round_count = game_state["round_count"]
-        self.turn_count = game_state["turn_count"]
-        self.current_position = game_state["current_position"]
-        print(f"Game state loaded from {filename}")
+    
  
     def __init__(self):
         self.players = []
@@ -53,6 +16,11 @@ class Monopolyclass:
         self.current_position = 0
         self.board = Boardclass()
         
+    
+
+
+
+
     # Add players
     def add_player(self, name):
         self.players.append(Playerclass(name, self.board))
@@ -90,8 +58,19 @@ class Monopolyclass:
             player = self.players[self.current_position]
             print(player.name + "'s turn")
 
-            input("Press Enter to roll the dice: ")
-
+            while True:  # 为player提供一个保存游戏的机会
+                user_input = input("Press Enter to roll the dice or type 'save' to save the game: ").strip().lower()
+                if user_input == "":
+                    break
+                elif user_input == "save":
+                    try:
+                        self.save_game("save.json")
+                        print("Game saved.")
+                        sys.exit()
+                    except Exception as e:
+                        print(f"An error occurred while saving the game: {e}")
+                else:
+                    print("Invalid input. Please press Enter to roll the dice or type 'save' to save the game.")
             dice1, dice2 = self.roll_dice()
             print("First dice is " + str(dice1)) 
             print("Second dice is " + str(dice2))
