@@ -111,23 +111,31 @@ class Start_game:
         print(f"Game state saved to {filename}")
 
     def load_game(self, filename="game_state.json"):
-        with open(filename, "r") as file:
-            game_state = json.load(file)
+        try:
+            with open(filename, "r") as file:
+                game_state = json.load(file)
+
+            self.players = []
+            for player_data in game_state["players"]:
+                player = Playerclass(player_data["name"], self.board)
+                player.money = player_data["money"]
+                player.position = player_data["position"]
+                player.jail = player_data["jail"]
+                player.jailturns = player_data["jailturns"]
+                player.properties = [Property(name, price, rent) for name, price, rent in player_data["properties"]]
+                self.players.append(player)
         
-        self.players = []
-        for player_data in game_state["players"]:
-            player = Playerclass(player_data["name"], self.board)
-            player.money = player_data["money"]
-            player.position = player_data["position"]
-            player.jail = player_data["jail"]
-            player.jailturns = player_data["jailturns"]
-            player.properties = [Property(name, price, rent) for name, price, rent in player_data["properties"]]
-            self.players.append(player)
-        
-        self.round_count = game_state["round_count"]
-        self.turn_count = game_state["turn_count"]
-        self.current_position = game_state["current_position"]
-        print(f"Game state loaded from {filename}")
+            self.round_count = game_state["round_count"]
+            self.turn_count = game_state["turn_count"]
+            self.current_position = game_state["current_position"]
+            print(f"Game state loaded from {filename}")
+        except FileNotFoundError:
+            print(f"No saved game found with the filename {filename}.")
+            return False
+        except Exception as e:
+            print(f"An error occurred while loading the game: {e}")
+            return False
+        return True
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -241,6 +249,12 @@ if __name__ == "__main__":
         Start_game()
     elif choice == 'load':
         # 继续写load的部分
-        print("0")
+        start_game = Start_game()
+        if start_game.load_game():
+            mainscreen(start_game.game)
+        else:
+            print("Failed to load the game. Starting a new game.")
+            Start_game()
+        
     else:
         print("Invalid input. Please type 'new' or 'load'.")
