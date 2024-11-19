@@ -202,4 +202,3 @@ if __name__ == "__main__":
         print("0")
     else:
         print("Invalid input. Please type 'new' or 'load'.")
-    
