@@ -28,78 +28,78 @@ pygame.display.set_caption("Monopoly Game Board")
 
 
 #load images
-go_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Go.png')
+go_image=pygame.image.load('Image_monopoly/Go.png')
 go_image=pygame.transform.scale(go_image, (block_size-5, block_size-5))
 
-central_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Central.png')
+central_image=pygame.image.load('Image_monopoly/Central.png')
 central_image=pygame.transform.scale(central_image, (block_size-5, block_size-5))
 
-wanchai_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Wan Chai.png')
+wanchai_image=pygame.image.load('Image_monopoly/Wan Chai.png')
 wanchai_image=pygame.transform.scale(wanchai_image, (block_size-5, block_size-5))
 
-incometax_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/income tax.png')
+incometax_image=pygame.image.load('Image_monopoly/income tax.png')
 incometax_image=pygame.transform.scale(incometax_image, (block_size-5, block_size-5))
 
-Stanley_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Stanley.png')
+Stanley_image=pygame.image.load('Image_monopoly/Stanley.png')
 Stanley_image=pygame.transform.scale(Stanley_image, (block_size-5, block_size-5))
 
-Jail_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/In Jail.png')
+Jail_image=pygame.image.load('Image_monopoly/In Jail.png')
 Jail_image=pygame.transform.scale(Jail_image, (block_size-5, block_size-5))
 
-sheko_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Sheko.png')
+sheko_image=pygame.image.load('Image_monopoly/Sheko.png')
 sheko_image=pygame.transform.scale(sheko_image, (block_size-5, block_size-5))
 
-mongkok_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Mong kok.png')
+mongkok_image=pygame.image.load('Image_monopoly/Mong kok.png')
 mongkok_image=pygame.transform.scale(mongkok_image, (block_size-5, block_size-5))
 
-chance1_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/chance 1.png')
+chance1_image=pygame.image.load('Image_monopoly/chance 1.png')
 chance1_image=pygame.transform.scale(chance1_image, (block_size-5, block_size-5))
 
-TsingYi_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Tsing YI.png')
+TsingYi_image=pygame.image.load('Image_monopoly/Tsing YI.png')
 TsingYi_image=pygame.transform.scale(TsingYi_image, (block_size-5, block_size-5))
 
-Freeparking_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Free parking.png')
+Freeparking_image=pygame.image.load('Image_monopoly/Free parking.png')
 Freeparking_image=pygame.transform.scale(Freeparking_image, (block_size-5, block_size-5))
 
-Shatin_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Shatin.png')
+Shatin_image=pygame.image.load('Image_monopoly/Shatin.png')
 Shatin_image=pygame.transform.scale(Shatin_image, (block_size-5, block_size-5))
 
-chance2_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/chance 2.png')
+chance2_image=pygame.image.load('Image_monopoly/chance 2.png')
 chance2_image=pygame.transform.scale(chance2_image, (block_size-5, block_size-5))
 
-TuenMun_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Tuen Mun.png')
+TuenMun_image=pygame.image.load('Image_monopoly/Tuen Mun.png')
 TuenMun_image=pygame.transform.scale(TuenMun_image, (block_size-5, block_size-5))
 
-Taipo_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Tai po.png')
+Taipo_image=pygame.image.load('Image_monopoly/Tai po.png')
 Taipo_image=pygame.transform.scale(Taipo_image, (block_size-5, block_size-5))
 
-Go_to_jail_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Go to jail.png')
+Go_to_jail_image=pygame.image.load('Image_monopoly/Go to jail.png')
 Go_to_jail_image=pygame.transform.scale(Go_to_jail_image, (block_size-5, block_size-5))
 
-Saikung_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Sai Kung.png')
+Saikung_image=pygame.image.load('Image_monopoly/Sai Kung.png')
 Saikung_image=pygame.transform.scale(Saikung_image, (block_size-5, block_size-5))
 
-Yuenlong_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Yuen Long.png')
+Yuenlong_image=pygame.image.load('Image_monopoly/Yuen Long.png')
 Yuenlong_image=pygame.transform.scale(Yuenlong_image, (block_size-5, block_size-5))
 
-chance3_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/chance 3.png')
+chance3_image=pygame.image.load('Image_monopoly/chance 3.png')
 chance3_image=pygame.transform.scale(Yuenlong_image, (block_size-5, block_size-5))
 
-TaiO_image=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/Tai O.png')
+TaiO_image=pygame.image.load('Image_monopoly/Tai O.png')
 TaiO_image=pygame.transform.scale(TaiO_image, (block_size-5, block_size-5))
 
 #load dice images
-dice1=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/dice_1.png')
+dice1=pygame.image.load('Image_monopoly/dice_1.png')
 dice1=pygame.transform.scale(dice1, (block_size-5, block_size-5))
-dice2=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/dice_2.png')
+dice2=pygame.image.load('Image_monopoly/dice_2.png')
 dice2=pygame.transform.scale(dice2, (block_size-5, block_size-5))
-dice3=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/dice_3.png')
+dice3=pygame.image.load('Image_monopoly/dice_3.png')
 dice3=pygame.transform.scale(dice3, (block_size-5, block_size-5))
-dice4=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/dice_4.png')
+dice4=pygame.image.load('Image_monopoly/dice_4.png')
 dice4=pygame.transform.scale(dice4, (block_size-5, block_size-5))
-dice5=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/dice_5.png')
+dice5=pygame.image.load('Image_monopoly/dice_5.png')
 dice5=pygame.transform.scale(dice5, (block_size-5, block_size-5))
-dice6=pygame.image.load('/Users/sherlock/Documents/程序/Python-code/Monopoly/Image monopoly/dice_6.png')
+dice6=pygame.image.load('Image_monopoly/dice_6.png')
 dice6=pygame.transform.scale(dice6, (block_size-5, block_size-5))
 
 #sketch board item
