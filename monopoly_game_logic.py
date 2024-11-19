@@ -15,6 +15,8 @@ class Monopolyclass:
         self.turn_count = 0
         self.current_position = 0
         self.board = Boardclass()
+        self.dice1=0
+        self.dice2=0
         
     
 
@@ -47,7 +49,7 @@ class Monopolyclass:
         text_rect = text_surface.get_rect(center=self.roll_dice_button_rect.center)
         screen.blit(text_surface, text_rect)
 
-    def if_botton_clicked(self, mouse_pos):
+    def if_button_clicked(self, mouse_pos):
         if hasattr(self, 'roll_dice_button_rect') and self.roll_dice_button_rect.collidepoint(mouse_pos):
             return True
         return False
