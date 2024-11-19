@@ -102,7 +102,7 @@ class Start_game:
                                 if len(self.game.players) >= self.min_players:
                                     self.collecting_names = False
                                     # Start the main game board
-                                    mainscreen()
+                                    mainscreen(self.game)
                                 else:
                                     self.error_message = f"Error: Need at least {self.min_players} players to start."
                             elif name:
