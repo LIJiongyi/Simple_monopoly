@@ -193,13 +193,13 @@ class InputBox:
 
 # Run the Start Game interface
 if __name__ == "__main__":
+
+    choice = input("Type 'new' to start a new game or 'load' to load a saved game: ").strip().lower()
+    if choice == 'new':
+        Start_game()
+    elif choice == 'load':
+        # 继续写load的部分
+        print("0")
+    else:
+        print("Invalid input. Please type 'new' or 'load'.")
     
-    while True:
-        choice = input("Type 'new' to start a new game or 'load' to load a saved game: ").strip().lower()
-        if choice == 'new':
-            Start_game()
-        elif choice == 'load':
-            # 继续写load的部分
-            break
-        else:
-            print("Invalid input. Please type 'new' or 'load'.")
