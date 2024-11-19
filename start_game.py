@@ -9,29 +9,6 @@ import os
 # Initialize Pygame
 pygame.init()
 
-while True:
-        choice = input("Type 'new' to start a new game or 'load' to load a saved game: ").strip().lower()
-        if choice == 'new':
-            break
-        elif choice == 'load':
-            saved_games = list_saved_games()
-            if not saved_games:
-                print("No saved games found. Starting a new game.")
-                Start_gameclass(board_instance, monopoly_game)
-                break
-            print("Saved games:")
-            for i, game in enumerate(saved_games):
-                print(f"{i + 1}. {game}")
-            game_choice = input("Enter the number of the game you want to load: ").strip()
-            if game_choice.isdigit() and 1 <= int(game_choice) <= len(saved_games):
-                filename = saved_games[int(game_choice) - 1]
-                monopoly_game.load_game(filename)
-                break
-            else:
-                print("Invalid choice. Please try again.")
-        else:
-            print("Invalid input. Please type 'new' or 'load'.")
-
 
 # Screen settings
 SCREEN_SIZE = 760

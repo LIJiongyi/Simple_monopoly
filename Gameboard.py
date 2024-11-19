@@ -3,7 +3,7 @@ import sys
 import random
 from Board_back import Boardclass, Property_Slot, Chance_Slot, Gotojail_Slot,Goslot,Tax_Slot,Free_Parking_Slot, Visiting_Slot
 from Player import Playerclass
-from monopoly_game_logic import Monopolyclass
+# from monopoly_game_logic import Monopolyclass
 
 # Initialize Pygame
 pygame.init()
