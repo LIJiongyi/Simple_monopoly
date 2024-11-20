@@ -89,26 +89,6 @@ class Start_game:
             pygame.display.flip()
             self.clock.tick(30)  # Limit to 30 FPS
 
-    def save_game(self, filename="game_state.json"):
-        game_state = {
-            "players": [
-                {
-                    "name": player.name,
-                    "money": player.money,
-                    "position": player.position,
-                    "properties": [(prop.name, prop.price, prop.rent) for prop in player.properties],
-                    "jail": player.jail,
-                    "jailturns": player.jailturns
-                }
-                for player in self.players
-            ],
-            "round_count": self.round_count,
-            "turn_count": self.turn_count,
-            "current_position": self.current_position
-        }
-        with open(filename, "w") as file:
-            json.dump(game_state, file, indent=4)
-        print(f"Game state saved to {filename}")
 
     def load_game(self, filename="game_state.json"):
         try:

@@ -1,0 +1,23 @@
+{
+    "players": [
+        {
+            "name": "a",
+            "money": 1500,
+            "position": 10,
+            "properties": [],
+            "jail": false,
+            "jailturns": 0
+        },
+        {
+            "name": "b",
+            "money": 1500,
+            "position": 5,
+            "properties": [],
+            "jail": false,
+            "jailturns": 0
+        }
+    ],
+    "round_count": 0,
+    "turn_count": 2,
+    "current_position": 0
+}

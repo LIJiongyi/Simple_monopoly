@@ -5,6 +5,8 @@ import sys
 from utils import mainscreen
 import json
 import pygame
+from utils import save_game
+
 # Game Logic
 class Monopolyclass:
     
@@ -66,7 +68,7 @@ class Monopolyclass:
                     break
                 elif user_input == "save":
                     try:
-                        self.save_game("save.json")
+                        save_game(self,"save.json")
                         print("Game saved.")
                         sys.exit()
                     except Exception as e:
@@ -121,7 +123,7 @@ class Monopolyclass:
 
             player_positions = [p.position for p in self.players]
             # Display all players' money and position in UI
-            mainscreen(player_positions)
+            # mainscreen(player_positions)
 
 
             for p in self.players:
