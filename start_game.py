@@ -125,9 +125,9 @@ class Start_game:
                 player.properties = [Property(name, price, rent) for name, price, rent in player_data["properties"]]
                 self.players.append(player)
         
-            self.round_count = game_state["round_count"]
-            self.turn_count = game_state["turn_count"]
-            self.current_position = game_state["current_position"]
+            self.game.round_count = game_state["round_count"]
+            self.game.turn_count = game_state["turn_count"]
+            self.game.current_position = game_state["current_position"]
             print(f"Game state loaded from {filename}")
         except FileNotFoundError:
             print(f"No saved game found with the filename {filename}.")
