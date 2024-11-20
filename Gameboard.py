@@ -345,9 +345,11 @@ def draw_players(player_positions):
 
 
 #Main function
-def mainscreen(game_instance):
+def mainscreen(game_instance, continue_game): # game_instance is the instance of the Monopolyclass
     # Main loop
     running = True
+    if continue_game:
+        game_instance.turns()
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

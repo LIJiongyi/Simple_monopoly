@@ -27,15 +27,6 @@ RED = (255, 0, 0)
 font = pygame.font.Font(None, 50)
 small_font = pygame.font.Font(None, 36)
 
-
-def list_saved_games():
-    saved_games_dir = os.path.join(os.path.dirname(__file__), 'saved')
-    if not os.path.exists(saved_games_dir):
-        os.makedirs(saved_games_dir)
-    return [f for f in os.listdir(saved_games_dir) if f.endswith('.json')]
-
-
-
 def generate_random_name():
     length = random.randint(1, 20)
     return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
@@ -45,8 +36,10 @@ def generate_random_name():
 
 class Start_game:
     def __init__(self):
-        self.board = Boardclass()
-        self.game = Monopolyclass()
+        self.board = None
+        self.game = None
+        # self.board = Boardclass()
+        # self.game = Monopolyclass()
         self.font = pygame.font.Font(None, 50)
         self.small_font = pygame.font.Font(None, 36)
         self.screen_size = SCREEN_SIZE
@@ -64,7 +57,12 @@ class Start_game:
         self.current_player = 1
         self.running = True
         self.error_message = ""
-        self.run()
+
+    def initload(self):
+        self.board = Boardclass()
+        self.game = Monopolyclass()
+        self.create_buttons()
+
 
     def create_buttons(self):
         # Define Start Button
@@ -82,20 +80,19 @@ class Start_game:
             self.button_height
         )
 
-    def run(self):
-        while self.running:
-            self.handle_events()
-            self.draw_interface()
-            pygame.display.flip()
-            self.clock.tick(30)  # Limit to 30 FPS
+    def start_new_game(self):
+        self.collecting_names = True
+        self.player_inputs.append(InputBox(
+            self.screen_size // 2 - 100, self.screen_size // 2 + 100, 200, 50))
+        self.error_message = ""
+        self.run()
 
-
-    def load_game(self, filename="game_state.json"):
+    def load_saved_game(self, filename="save.json"):
         try:
             with open(filename, "r") as file:
                 game_state = json.load(file)
-
-            self.players = []
+            
+            # self.game.players = []
             for player_data in game_state["players"]:
                 player = Playerclass(player_data["name"], self.board)
                 player.money = player_data["money"]
@@ -103,19 +100,25 @@ class Start_game:
                 player.jail = player_data["jail"]
                 player.jailturns = player_data["jailturns"]
                 player.properties = [Property(name, price, rent) for name, price, rent in player_data["properties"]]
-                self.players.append(player)
-        
+                self.game.players.append(player)
+            
             self.game.round_count = game_state["round_count"]
             self.game.turn_count = game_state["turn_count"]
             self.game.current_position = game_state["current_position"]
             print(f"Game state loaded from {filename}")
+            mainscreen(self.game, continue_game=True)
         except FileNotFoundError:
             print(f"No saved game found with the filename {filename}.")
-            return False
         except Exception as e:
             print(f"An error occurred while loading the game: {e}")
-            return False
-        return True
+        self.running = False
+
+    def run(self):
+        while self.running:
+            self.handle_events()
+            self.draw_interface()
+            pygame.display.flip()
+            self.clock.tick(30)  # Limit to 30 FPS
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -226,15 +229,12 @@ if __name__ == "__main__":
 
     choice = input("Type 'new' to start a new game or 'load' to load a saved game: ").strip().lower()
     if choice == 'new':
-        Start_game()
+        start_game = Start_game()
+        start_game.start_new_game()
     elif choice == 'load':
         # 继续写load的部分
         start_game = Start_game()
-        if start_game.load_game():
-            mainscreen(start_game.game)
-        else:
-            print("Failed to load the game. Starting a new game.")
-            Start_game()
+        start_game.load_saved_game()
         
     else:
         print("Invalid input. Please type 'new' or 'load'.")
