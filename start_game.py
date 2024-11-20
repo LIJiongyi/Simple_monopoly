@@ -89,9 +89,13 @@ class Start_game:
 
     def load_saved_game(self, filename="save.json"):
         try:
-            with open(filename, "r") as file:
+            saved_games_dir = os.path.join(os.getcwd(), 'saved')
+            filepath = os.path.join(saved_games_dir, filename)
+            with open(filepath, "r") as file:
                 game_state = json.load(file)
-            
+            self.board = Boardclass()  # 初始化 board
+            self.game = Monopolyclass()  # 初始化 game
+            self.game.players = []
             # self.game.players = []
             for player_data in game_state["players"]:
                 player = Playerclass(player_data["name"], self.board)
