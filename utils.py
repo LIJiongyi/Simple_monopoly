@@ -1,8 +1,9 @@
 import pygame
 import json
 import os
-def save_game(self, filename="game_state.json"):
+def save_game(self, filename="/../../saved/save.json"): # 调不过来路径,算了
         saved_games_dir = os.path.join(os.getcwd(), 'saved')
+        filepath = os.path.join(saved_games_dir, filename)
         if not os.path.exists(saved_games_dir):
             os.makedirs(saved_games_dir)
     
@@ -24,7 +25,7 @@ def save_game(self, filename="game_state.json"):
             "turn_count": self.turn_count,
             "current_position": self.current_position
         }
-        with open(filename, "w") as file:
+        with open(filepath, "w") as file: # AI filename filepath傻傻分不清 tmd
             json.dump(game_state, file, indent=4)
         print(f"Game state saved to {filename}")
 

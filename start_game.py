@@ -81,6 +81,7 @@ class Start_game:
         )
 
     def start_new_game(self):
+        self.initload() # 妈的,另一份使用了newgame逻辑分支这个没改过来
         self.collecting_names = True
         self.player_inputs.append(InputBox(
             self.screen_size // 2 - 100, self.screen_size // 2 + 100, 200, 50))
@@ -139,7 +140,7 @@ class Start_game:
                                 if len(self.game.players) >= self.min_players:
                                     self.collecting_names = False
                                     # Start the main game board
-                                    mainscreen(self.game)
+                                    mainscreen(self.game, continue_game=False)
                                 else:
                                     self.error_message = f"Error: Need at least {self.min_players} players to start."
                             elif name:
@@ -153,7 +154,7 @@ class Start_game:
                                     if self.current_player > self.max_players or len(self.game.players) >= self.max_players:
                                         self.collecting_names = False
                                         #Start main board
-                                        mainscreen(self.game)
+                                        mainscreen(self.game, continue_game=False)
 
                                     else:
                                         # Prepare for next player input

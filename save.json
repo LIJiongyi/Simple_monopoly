@@ -3,27 +3,21 @@
         {
             "name": "a",
             "money": 1500,
-            "position": 5,
+            "position": 0,
             "properties": [],
             "jail": false,
             "jailturns": 0
         },
         {
             "name": "b",
-            "money": 1490,
-            "position": 6,
-            "properties": [
-                [
-                    "Chek O",
-                    10,
-                    400
-                ]
-            ],
+            "money": 1500,
+            "position": 0,
+            "properties": [],
             "jail": false,
             "jailturns": 0
         }
     ],
     "round_count": 0,
-    "turn_count": 2,
+    "turn_count": 0,
     "current_position": 0
 }
