@@ -1,3 +1,4 @@
+
 import pygame
 import sys
 import random
@@ -115,12 +116,26 @@ def text_in_box(text,font,color,x,y,length,height):
     screen.blit(textsurface,text_rect)
 #add animation function
 def roll_dice_animation(game_instance):
-    for _ in range(30):  # 30 FPS animation
+    # First generate the final dice values
+    final_dice1 = random.randint(1, 6)
+    final_dice2 = random.randint(1, 6)
+
+    # Animate
+    for _ in range(30):  # 30 frames of random values
         game_instance.dice1 = random.randint(1, 6)
         game_instance.dice2 = random.randint(1, 6)
         drawing(game_instance)
         pygame.display.flip()
         pygame.time.delay(100)
+
+    # Show final values
+    game_instance.dice1 = final_dice1
+    game_instance.dice2 = final_dice2
+    game_instance.dice_rolled=True
+    drawing(game_instance)
+    pygame.display.flip()
+
+    return final_dice1, final_dice2
 
 #sketch board
 def drawing(game_instance):
@@ -358,8 +373,7 @@ def mainscreen(game_instance, continue_game): # game_instance is the instance of
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 if game_instance.if_button_clicked(mouse_pos):
-                    roll_dice_animation(game_instance)# 播放掷骰子动画
-                    game_instance.roll_dice()
+                    roll_dice_animation(game_instance)
                     game_instance.turns()  # 处理玩家回合
 
 
@@ -371,58 +385,3 @@ def mainscreen(game_instance, continue_game): # game_instance is the instance of
         #draw_players([p.position for p in game.players])
         # Update the display
         pygame.display.flip()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
