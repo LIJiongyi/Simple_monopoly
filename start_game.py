@@ -8,9 +8,9 @@ from Board_back import Boardclass
 from Gameboard import mainscreen
 import os
 import json
+
 # Initialize Pygame
 pygame.init()
-
 
 # Screen settings
 SCREEN_SIZE = 760
@@ -27,11 +27,10 @@ RED = (255, 0, 0)
 font = pygame.font.Font(None, 50)
 small_font = pygame.font.Font(None, 36)
 
+
 def generate_random_name():
     length = random.randint(1, 20)
     return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
-
-
 
 
 class Start_game:
@@ -63,7 +62,6 @@ class Start_game:
         self.game = Monopolyclass()
         self.create_buttons()
 
-
     def create_buttons(self):
         # Define Start Button
         self.start_button_rect = pygame.Rect(
@@ -81,10 +79,10 @@ class Start_game:
         )
 
     def start_new_game(self):
-        self.initload() # 妈的,另一份使用了newgame逻辑分支这个没改过来
+        self.initload()
         self.collecting_names = True
         self.player_inputs.append(InputBox(
-            self.screen_size // 2 - 100, self.screen_size // 2 + 100, 200, 50))
+            self.screen_size // 2 - 100, self.screen_size // 2 -50, 200, 50))
         self.error_message = ""
         self.run()
 
@@ -106,7 +104,7 @@ class Start_game:
                 player.jailturns = player_data["jailturns"]
                 player.properties = [Property(name, price, rent) for name, price, rent in player_data["properties"]]
                 self.game.players.append(player)
-            
+
             self.game.round_count = game_state["round_count"]
             self.game.turn_count = game_state["turn_count"]
             self.game.current_position = game_state["current_position"]
@@ -136,7 +134,7 @@ class Start_game:
                         current_input_box = self.player_inputs[-1]
                         if event.key == pygame.K_RETURN:
                             name = current_input_box.text.strip()
-                            if name.lower()=='done':
+                            if name.lower() == 'done':
                                 if len(self.game.players) >= self.min_players:
                                     self.collecting_names = False
                                     # Start the main game board
@@ -151,16 +149,17 @@ class Start_game:
                                     self.game.add_player(name)
                                     self.error_message = ""
                                     self.current_player += 1
-                                    if self.current_player > self.max_players or len(self.game.players) >= self.max_players:
+                                    if self.current_player > self.max_players or len(
+                                            self.game.players) >= self.max_players:
                                         self.collecting_names = False
-                                        #Start main board
+                                        # Start main board
                                         mainscreen(self.game, continue_game=False)
 
                                     else:
                                         # Prepare for next player input
                                         self.player_inputs.append(InputBox(
                                             self.screen_size // 2 - 100,
-                                            self.screen_size // 2 + 100 + (self.current_player - 1) * 60, 200, 50))
+                                            self.screen_size // 2 - 50 + (self.current_player - 1) * 60, 200, 50))
                             else:
                                 self.error_message = "Error: No name entered. Please enter a valid name."
                         elif event.key == pygame.K_BACKSPACE:
@@ -214,9 +213,6 @@ class Start_game:
             quit_rect = quit_text.get_rect(center=self.quit_button_rect.center)
             self.screen.blit(quit_text, quit_rect)
 
-    def collect_players(self):
-        # This function can be used to handle player inputs if expanded
-        pass
 
 class InputBox:
     def __init__(self, x, y, w, h, text=''):
@@ -229,6 +225,7 @@ class InputBox:
         text_surface = small_font.render(self.text, True, self.color)
         screen.blit(text_surface, (self.rect.x + 5, self.rect.y + 10))
 
+
 # Run the Start Game interface
 if __name__ == "__main__":
 
@@ -237,9 +234,8 @@ if __name__ == "__main__":
         start_game = Start_game()
         start_game.start_new_game()
     elif choice == 'load':
-        # 继续写load的部分
         start_game = Start_game()
         start_game.load_saved_game()
-        
+
     else:
         print("Invalid input. Please type 'new' or 'load'.")
