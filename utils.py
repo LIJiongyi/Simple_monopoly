@@ -1,13 +1,13 @@
 import pygame
 import json
 import os
-def save_game(self, filename="/../../saved/save.json"): # 调不过来路径,算了
+def save_game(self, filename="/../../saved/save.json"): 
         saved_games_dir = os.path.join(os.getcwd(), 'saved')
         filepath = os.path.join(saved_games_dir, filename)
         if not os.path.exists(saved_games_dir):
             os.makedirs(saved_games_dir)
     
-        # 构建完整的文件路径
+        #the file path
         filepath = os.path.join(saved_games_dir, filename)
         game_state = {
             "players": [
@@ -25,7 +25,7 @@ def save_game(self, filename="/../../saved/save.json"): # 调不过来路径,算
             "turn_count": self.turn_count,
             "current_position": self.current_position
         }
-        with open(filepath, "w") as file: # AI filename filepath傻傻分不清 tmd
+        with open(filepath, "w") as file: 
             json.dump(game_state, file, indent=4)
         print(f"Game state saved to {filename}")
 
@@ -38,6 +38,5 @@ def mainscreen():
     screen.fill(255,255,255)
     # Keeping drawing board
     drawing()
-    # draw_players(playerposition)
     # Update the display
     pygame.display.flip()
